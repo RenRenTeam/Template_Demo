@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!--默认极速内核,ie标准内核打开-->
+    <meta name="renderer" content="webkit,ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,IE=8,IE=7,IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>test - 内容页</title>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/template.js"></script>
+    <style type="text/css">
+    li{
+    	list-style: none;
+    	float: left;
+    }
+    .dv2{
+    	width: 200px;
+    }
+    .dv3{
+    	width: 300px
+    }
+    </style>
+<body>
+	<div id="content">
+		
+	</div>
+
+	<script id="script_tempalte" type="text/html">
+		<ul class="courseUl">
+		    <li class="t-li">
+		        <div style=" padding-left: 22px;" class="left dv1">{{tDate}}</div>
+		        <div class="left dv2">{{tCotent}}</div>
+		        <div class="left dv3">{{tTeacher}}</div>
+		        <div class="clear"></div>
+		    </li>
+		    {{each list as value i}}
+				<li>
+		            <div class="left dv1">
+		                <div class="custom-checkbox">
+		                    <div class="icheckbox" style="position: relative;"><input type="checkbox" class="icheck" value="checkCourse" id="a" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;"></ins></div>
+		                    <label for="a" class="">&nbsp;{{value.date}}</label>
+		                </div>
+		            </div>
+		            <div class="left dv2">{{i}} || {{value.content}}</div>
+		            <div class="left dv3">{{value.teacher}}</div>
+		        </li>
+		    {{/each}}
+		</ul>	
+
+	</script>
+
+	<script type="text/javascript">
+		var list = new Array();
+
+		var en1 = {
+			date : "08月05日",
+			content : "日本留学现况介绍",
+			teacher: "和风留学网董事长 袁列老师"
+		};
+
+		var en2 = {
+			date : "08月05日2",
+			content : "日本留学现况介绍2",
+			teacher: "和风留学网董事长 袁列老师2"
+		};
+
+		list.push(en1);
+		list.push(en2);
+
+
+		var data = {
+		    tDate: '时间',
+		    tCotent:'讲座内容',
+		    tTeacher:'讲师',
+		    list: list
+		};
+
+		var html = template('script_tempalte', data);
+		$("#content").append(html);
+
+		console.log(list);
+	</script>
+</body>
+</html>
